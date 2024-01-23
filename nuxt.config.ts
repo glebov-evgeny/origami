@@ -36,8 +36,18 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: '' },
-        { hid: 'keywords', name: 'keywords', content: '' },
+        { hid: 'og:title', property: 'og:title', content: 'origami-info.ru' },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'Оригами из бумаги. Все схемы для сборки красивый и интересных оригами.',
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Оригами из бумаги. Все схемы для сборки красивый и интересных оригами.',
+        },
+        { hid: 'keywords', name: 'keywords', content: 'Оригами' },
         { name: 'theme-color', content: '#fff' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],
@@ -54,6 +64,25 @@ export default defineNuxtConfig({
   css: ['@/assets/styles/main.scss'],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: ['~/components', '~/components/ui'],
+
+  robots: {
+    UserAgent: '*',
+    Disallow: ['/admin/', '/authorization/', '/lk/'],
+    Host: 'https://origami-info.ru/',
+    Sitemap: 'https://origami-info.ru/sitemap.xml',
+  },
+
+  sitemap: {
+    hostname: 'https://origami-info.ru/',
+    gzip: true,
+    exclude: ['/admin/', '/authorization/', '/lk/'],
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date(),
+    },
+  },
+
   runtimeConfig: {
     public: {
       FB_API_KEY: process.env.FB_API_KEY,
