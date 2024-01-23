@@ -8,7 +8,7 @@
       </button>
       <div :class="['s-header__logic', { active: isOpen }]">
         <nav class="s-header__nav">
-          <button class="s-header__nav-link" aria-label="link on main page" @click="linkNavigateToMain">главная</button>
+          <button class="s-header__nav-link" aria-label="link on main page" @click="linkNavigateToMain">Главная</button>
         </nav>
       </div>
       <div class="s-header__aside">
