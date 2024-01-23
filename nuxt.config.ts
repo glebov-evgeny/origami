@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   modules: ['nuxt-swiper', '@pinia/nuxt', '@nuxt/image-edge'],
   app: {
     head: {
-      title: 'Fairplay',
+      title: 'Origami-Info',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -39,10 +39,10 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],
       link: [
-        { rel: 'shortcut icon', type: 'image/x-icon', href: '/origami/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/origami/favicon-16x16.png' },
-        { rel: 'icon', sizes: '32x32', href: '/origami/favicon-32x32.png', type: 'image/png' },
-        { rel: 'apple-touch-icon', href: '/origami/apple-touch-icon.png' },
+        { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'icon', sizes: '32x32', href: '/favicon-32x32.png', type: 'image/png' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },

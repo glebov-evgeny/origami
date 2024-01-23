@@ -17,12 +17,12 @@
             <p v-if="fbError" class="s-auth__form-error-text">{{ fbErrorText }}</p>
           </div>
         </form>
-        <div class="s-auth__changebox">
+        <!-- <div class="s-auth__changebox">
           <span class="s-auth__text">или</span>
           <button class="s-auth__button" @click="checkForm">
             {{ formName ? 'Регистрация' : 'Войти' }}
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -30,9 +30,9 @@
 
 <script setup>
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@firebase/auth';
-const auth = getAuth();
-
 import { useUserStore } from '~/store/user';
+const auth = getAuth();
+const config = useRuntimeConfig();
 const currentUser = useUserStore();
 const router = useRouter();
 const userInformation = useCookie('userInformation', {
@@ -50,7 +50,7 @@ let passwordError = ref(false);
 let fbError = ref(false);
 let fbErrorText = ref('');
 
-const checkForm = () => (formName.value = !formName.value);
+// const checkForm = () => (formName.value = !formName.value);
 
 const sendForm = async () => {
   if (!email.value.trim() || !password.value.trim()) {
@@ -90,7 +90,13 @@ const sendRegForm = async () => {
       maxAge: 60 * 60 * 24 * 7,
     };
     userInformation.value = cookieDataUser;
-    router.push({ path: '/lk' });
+    // console.log(user.user.uid);
+    // console.log(config.ADMIN_ID);
+    // if (user.user.uid === config.ADMIN_ID) {
+    //   router.push({ path: '/admin' });
+    // } else {
+    //   router.push({ path: '/lk' });
+    // }
   } catch (error) {
     validFlag.value = true;
     fbError.value = true;
@@ -113,7 +119,11 @@ const sendLoginForm = async () => {
       maxAge: 60 * 60 * 24 * 7,
     };
     userInformation.value = cookieDataUser;
-    router.push({ path: '/lk' });
+    if (user.user.uid === config.ADMIN_ID) {
+      router.push({ path: '/admin' });
+    } else {
+      router.push({ path: '/' });
+    }
   } catch (error) {
     validFlag.value = true;
     fbError.value = true;

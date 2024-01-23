@@ -9,42 +9,8 @@
       <div :class="['s-header__logic', { 'active': isOpen }]">
         <nav class="s-header__nav">
           <button class="s-header__nav-link" @click="linkNavigateToMain">Главная</button>
-          <!-- <nuxt-link class="s-header__nav-link" to="/cats">Котики</nuxt-link> -->
-          <!-- <button class="s-header__nav-link" @click="linkNavigateToAuth">И это ссылка</button> -->
-          <!-- <div class="s-header__nav-buttons">
-            <button v-if="!currentUser.uid" class="s-header__nav-login" @click="linkNavigateToAuth">Войти</button>
-            <div v-else>
-              <div class="s-header__nav-box">
-                <button
-                  v-if="currentUser.uid === config.ADMIN_ID"
-                  class="s-header__nav-login _lk"
-                  @click="linkNavigateToAdmin">
-                  Великий Админ
-                </button>
-                <button v-else class="s-header__nav-login _lk" @click="linkNavigateToLK">
-                  Личный кабинет
-                </button>
-              </div>
-              <button class="s-header__nav-login" @click="loginClean">Выйти</button>
-            </div>
-          </div> -->
         </nav>
       </div>
-
-      <!-- <div class="s-header__control">
-        <button v-if="!currentUser.uid" class="s-header__nav-login" @click="linkNavigateToAuth">Войти</button>
-        <div v-else class="s-header__nav-login-box">
-          <div class="s-header__nav-box">
-            <button
-              v-if="currentUser.uid === config.ADMIN_ID"
-              class="s-header__nav-login _lk"
-              @click="linkNavigateToAdmin">АД</button>
-            <button v-else class="s-header__nav-login _lk" @click="linkNavigateToLK">ЛК</button>
-          </div>
-          <button class="s-header__nav-login" @click="loginClean">Выйти</button>
-        </div>
-      </div> -->
-
       <div class="s-header__aside">
         <button class="s-header__theme" type="button" @click="changeThemes">
           <svg
@@ -86,66 +52,16 @@
 </template>
 
 <script setup>
-// const config = useRuntimeConfig();
-import { useUserStore } from '~/store/user';
-const currentUser = useUserStore();
-
 const emit = defineEmits(['handler-change-themes']);
 const router = useRouter();
-const userInformation = useCookie('userInformation');
-const userCorrect = ref(false);
 const isOpen = ref(false);
 
 const changeThemes = () => {
   emit('handler-change-themes');
 };
-/*
-const linkNavigateToAuth = () => {
-  isOpen.value = false;
-  if (!userInformation.value) {
-    router.push({ path: '/authorization' });
-  } else {
-    if (currentUser.uid === config.ADMIN_ID) {
-      router.push({ path: '/admin' });
-    } else {
-      router.push({ path: '/lk' });
-    }
-  }
-};
-
-const linkNavigateToLK = () => {
-  isOpen.value = false;
-  if (currentUser.uid === config.ADMIN_ID) {
-    router.push({ path: '/admin' });
-  } else {
-    router.push({ path: '/lk' });
-  }
-};
-
-const linkNavigateToAdmin = () => {
-  isOpen.value = false;
-  router.push({ path: '/admin' });
-};
-*/
 const linkNavigateToMain = () => {
   isOpen.value = false;
   router.push({ path: '/' });
-};
-/*
-const loginClean = () => {
-  // удаление информации о пользователе из стора и кук, редирект на главную страницу
-  currentUser.$reset();
-  userInformation.value = null;
-  router.push({ path: '/' });
-  userCorrect.value = false;
-  isOpen.value = false;
-};
-*/
-const getInformationFromCookie = async () => {
-  if (userInformation.value) {
-    currentUser.setUser(userInformation.value.email, userInformation.value.id);
-    userCorrect.value = true;
-  }
 };
 
 const toggleHam = () => {
@@ -160,7 +76,6 @@ const getWidth = () => {
 };
 
 onMounted(() => {
-  getInformationFromCookie();
   getWidth();
   window.addEventListener('resize', (e) => {
     if (e.currentTarget.innerWidth > 767) {
