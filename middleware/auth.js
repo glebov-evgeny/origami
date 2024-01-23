@@ -2,6 +2,6 @@
 export default defineNuxtRouteMiddleware(() => {
   const userInformation = useCookie('userInformation');
   if (!userInformation.value) {
-    return navigateTo('/authorization');
+    return navigateTo('/');
   }
 });

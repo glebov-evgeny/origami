@@ -4,7 +4,7 @@
       <div class="s-footer__block">
         <span>{{ getYear }}. Все права защищены.</span>
         <div class="s-footer__socials">
-          <button class="s-footer__theme" type="button" @click="changeThemes">
+          <button class="s-footer__theme" aria-label="change color themes button" type="button" @click="changeThemes">
             <svg
               width="24"
               height="24"
@@ -30,10 +30,16 @@
             <img src="/images/icons/lk.png" alt="lk icon" />
           </NuxtLink>
 
-          <button v-if="!currentUser.uid" class="s-footer__login" @click="linkNavigateToAuth">
+          <button
+            v-if="!currentUser.uid"
+            aria-label="login button"
+            type="button"
+            class="s-footer__login"
+            @click="linkNavigateToAuth"
+          >
             <img src="/images/icons/login.png" alt="login icon" />
           </button>
-          <button v-else class="s-footer__login" @click="loginClean">
+          <button v-else class="s-footer__login" aria-label="logout button" type="button" @click="loginClean">
             <img src="/images/icons/logout.png" alt="logout icon" />
           </button>
         </div>

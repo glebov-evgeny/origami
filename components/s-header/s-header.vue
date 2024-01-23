@@ -2,17 +2,17 @@
 <template>
   <header :class="['s-header', { 'active': isOpen }]">
     <div class="s-header__container l-wide">
-      <button class="s-header__logo" @click="linkNavigateToMain">
+      <button class="s-header__logo" aria-label="logo with link on main page" type="button" @click="linkNavigateToMain">
         <img src="/images/header/logo-origami.png" class="s-header__logo-img" alt="logo" />
         <span class="s-header__logo-text">origami-info</span>
       </button>
       <div :class="['s-header__logic', { 'active': isOpen }]">
         <nav class="s-header__nav">
-          <button class="s-header__nav-link" @click="linkNavigateToMain">Главная</button>
+          <button class="s-header__nav-link" aria-label="link on main page" @click="linkNavigateToMain">Главная</button>
         </nav>
       </div>
       <div class="s-header__aside">
-        <button class="s-header__theme" type="button" @click="changeThemes">
+        <button class="s-header__theme" aria-label="change color themes button" type="button" @click="changeThemes">
           <svg
             width="24"
             height="24"
