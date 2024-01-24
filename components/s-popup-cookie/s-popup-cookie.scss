@@ -1,3 +1,4 @@
+/* stylelint-disable */
 .s-popup-cookie {
   position: fixed;
   z-index: 999;
@@ -12,15 +13,15 @@
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(0.5rem);
   opacity: 0;
-  transition: .2s;
-  &._animated{
+  transition: 0.2s;
+  &._animated {
     opacity: 1;
-    transition: .2s;
+    transition: 0.2s;
   }
   &-title {
     color: var(--color-second);
   }
-  &-description{
+  &-description {
     color: var(--color-second);
   }
   &__content {
@@ -33,14 +34,14 @@
     background: var(--color-main);
     opacity: 0;
     transform: translateY(torem(75));
-    transition: .3s;
-    &._animated{
+    transition: 0.3s;
+    &._animated {
       opacity: 1;
       transform: translateY(0);
-      transition: .3s;
+      transition: 0.3s;
     }
   }
-  &__close{
+  &__close {
     cursor: pointer;
     position: absolute;
     right: 0;
@@ -52,17 +53,17 @@
     justify-content: center;
     width: torem(40);
     height: torem(40);
-    transition: .3s;
-    &:hover{
+    transition: 0.3s;
+    &:hover {
       transform: rotate(180deg);
-      transition: .3s;
+      transition: 0.3s;
     }
-    &-icon{
+    &-icon {
       width: torem(20);
       height: torem(20);
     }
   }
-  &-button{
+  &-button {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -76,8 +77,9 @@
     border-radius: 1.25rem;
     margin-top: torem(48);
     margin: torem(48) auto 0;
-    transition: .2s;
+    transition: 0.2s;
     background: var(--color-orange);
     color: var(--color-black);
   }
 }
+/* stylelint-enable */

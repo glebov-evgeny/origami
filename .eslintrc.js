@@ -20,6 +20,8 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    "vue/no-v-text-v-html-on-component": 0,
+    'vue/no-v-html':  0,
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'max-len': ['error', { ignorePattern: 'd="([\\s\\S]*?)"', code: 120 }],

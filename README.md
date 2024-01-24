@@ -9,4 +9,4 @@
 4) Google Firebase Authentication
 
 ```
-Link: https://glebov-evgeny.github.io/fairplay/
+Link: https://origami-info.ru/

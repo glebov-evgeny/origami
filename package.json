@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
+    "@vueup/vue-quill": "^1.2.0",
     "commitizen": "^4.2.6",
     "cz-customizable": "^7.0.0",
     "dompurify": "^2.4.3",
@@ -60,6 +61,7 @@
     "nuxt": "^3.2.0",
     "nuxt-swiper": "^0.1.9",
     "pinia": "^2.0.29",
+    "quill-blot-formatter": "^1.0.5",
     "swiper": "^8.4.6",
     "vite-plugin-eslint": "^1.8.1",
     "vue-router": "^4.1.6"

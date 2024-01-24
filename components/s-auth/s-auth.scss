@@ -1,105 +1,118 @@
-/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-descending-specificity selector-class-pattern */
 
 .s-auth {
-  width: 100%;
-  color: var(--color-second);
-  padding: torem(60) 0;
-    @include _1440 {
+  @include _1440 {
     padding: torem(120) 0;
   }
-  &__title{
-    font-size: torem(24);
-    line-height: 135%;
-    font-weight: 600;
-    text-align: center;
-    color: var(--color-second);
-    margin-bottom: torem(16);
+
+  width: 100%;
+  padding: torem(60) 0;
+  color: var(--color-second);
+
+  &__title {
     @include _768 {
       font-size: torem(28);
     }
-  }
-  &__formbox{
+
+    margin-bottom: torem(16);
+    color: var(--color-second);
+    font-size: torem(24);
+    font-weight: 600;
+    line-height: 135%;
     text-align: center;
+  }
+
+  &__formbox {
     max-width: torem(420);
     margin: torem(24) auto 0;
+    text-align: center;
   }
-  &__form{
+
+  &__form {
     display: flex;
     flex-direction: column;
-    border: torem(1) solid var(--color-grey);
     padding: var(--a-padding-x2);
+    border: torem(1) solid var(--color-grey);
     border-radius: var(--border-radius-x1);
-    &-input{
-      border: none;
-      border-bottom: torem(1) solid var(--color-grey);
-      // border-radius: var(--border-radius-x1);
-      background: transparent!important;
+
+    &-input {
       width: 100%;
       min-height: torem(40);
-      font-size: torem(16);
-      font-weight: 600;
-      color: var(--color-second);
       margin-bottom: torem(10);
       padding: 0 torem(8);
+      color: var(--color-second);
+
+      // border-radius: var(--border-radius-x1);
+      background: transparent !important;
+      border: none;
+      border-bottom: torem(1) solid var(--color-grey);
+      font-size: torem(16);
+      font-weight: 600;
     }
-    &-button{
-      cursor: pointer;
+
+    &-button {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       width: 100%;
       min-height: torem(46);
+      color: var(--color-white);
+      background: var(--color-red);
       border: none;
+      border-radius: var(--border-radius-x1);
       outline: none;
       font-size: torem(16);
       font-weight: 600;
-      color: var(--color-white);
-      background: var(--color-red);
-      border-radius: var(--border-radius-x1);
+      cursor: pointer;
     }
-    &-error{
+
+    &-error {
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       width: 100%;
       min-height: torem(46);
-      font-size: torem(14);
-      font-weight: 600;
+      margin: torem(8) auto 0;
       color: var(--color-white);
       background: var(--color-error);
       border-radius: var(--border-radius-x1);
-      margin: torem(8) auto 0;
+      font-size: torem(14);
+      font-weight: 600;
       user-select: none;
     }
   }
-  &__text{
+
+  &__text {
     display: block;
     margin: 1rem auto;
     font-size: torem(16);
   }
-  &__button{
-    cursor: pointer;
+
+  &__button {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 100%;
     min-height: torem(40);
+    color: var(--color-black);
+    background: var(--color-grey);
     border: none;
+    border-radius: var(--border-radius-x1);
     outline: none;
     font-size: torem(14);
     font-weight: 600;
-    color: var(--color-black);
-    background: var(--color-grey);
-    border-radius: var(--border-radius-x1);
+    cursor: pointer;
   }
-  &__help{
+
+  &__help {
     display: block;
     margin: 2rem auto 0;
     font-size: torem(14);
-    &-bold{
+
+    &-bold {
       font-weight: 800;
     }
   }
 }
-/* stylelint-enable no-descending-specificity */
+/* stylelint-enable no-descending-specificity selector-class-pattern */
