@@ -16,6 +16,7 @@
             <s-editor
               :item-content="itemContent"
               :create-or-update="createOrUpdate"
+              :disabled-button="disabledButton"
               @setNewArticle="createArticle"
               @updateArticle="updateArticle"
             />
@@ -41,20 +42,27 @@
         </div>
       </div>
     </div>
+    <s-popup-info v-if="popupInfoShow" @close-popup="closePopupInfo" />
   </section>
 </template>
 <script setup>
 // import getArticles from '~/api/getArticles';
-import setNewArticle from '~/api/setNewArticle';
+// import setNewArticle from '~/api/setNewArticle';
+const popupInfoShow = ref(false);
 const allArticles = ref([]);
 const currentArticle = ref([]);
 const createOrUpdate = ref(true);
+const disabledButton = ref(false);
 
 const itemTitle = ref('');
 const itemContent = ref('');
 
 const createArticle = async (content) => {
-  await setNewArticle(content, itemTitle.value);
+  // await setNewArticle(content, itemTitle.value);
+  popupInfoShow.value = true;
+  itemTitle.value = '';
+  itemContent.value = '';
+  console.log(content);
 };
 const editingArticle = (id) => {
   currentArticle.value = allArticles.value.find((item) => item.id === id);
@@ -111,6 +119,11 @@ async function getAllArticles() {
   ];
   allArticles.value = response.sort((a, b) => a.data.createAt - b.data.createAt);
 }
+
+const closePopupInfo = () => {
+  popupInfoShow.value = false;
+};
+
 onMounted(() => {
   // getAllArticles();
 });

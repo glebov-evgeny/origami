@@ -5,12 +5,13 @@
     <button
       v-if="props.createOrUpdate"
       class="s-editor__button"
-      :class="[{ _disabled: disabledButton }]"
+      :class="[{ _disabled: props.disabledButton }]"
       @click="createArticle"
     >
       Создать
     </button>
     <button v-else class="s-editor__button" @click="updateArticle">Редактировать</button>
+    <div>{{ props.itemContent }}</div>
   </section>
 </template>
 <script setup>
@@ -18,7 +19,7 @@ import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 const emit = defineEmits(['setNewArticle', 'updateArticle']);
 const content = ref('');
-const disabledButton = ref(false);
+// const disabledButton = ref(false);
 const props = defineProps({
   itemContent: {
     type: String,
@@ -27,6 +28,10 @@ const props = defineProps({
     },
   },
   createOrUpdate: {
+    type: Boolean,
+    default: true,
+  },
+  disabledButton: {
     type: Boolean,
     default: true,
   },
@@ -40,13 +45,17 @@ watch(
   { deep: true, immediate: true },
 );
 
-watch(
-  () => content.value,
-  () => {
-    console.log(content.value);
-  },
-  { deep: true, immediate: true },
-);
+// watch(
+//   () => content.value,
+//   () => {
+//     if (content.value !== '' && content.value !== '<p><br></p>') {
+//       disabledButton.value = false;
+//     } else {
+//       disabledButton.value = true;
+//     }
+//   },
+//   { deep: true, immediate: true },
+// );
 
 const createArticle = () => {
   emit('setNewArticle', content.value);
