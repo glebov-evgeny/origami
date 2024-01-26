@@ -27,28 +27,35 @@
             <h2 class="s-admin__subtitle">Все статьи:</h2>
             <div class="s-admin__box-items">
               <div v-for="item in allArticles" :key="item.id" class="s-admin__box-item">
-                <h3 class="s-admin__box-item-title">{{ item.data.title }} / {{ item.data.id }}</h3>
+                <h3 class="s-admin__box-item-title">{{ item.data.title }} / {{ item.data.visible }}</h3>
                 <div class="s-admin__box-item-logic">
                   <div class="s-admin__box-item-action _green" @click="editingArticle(item.id)">Р</div>
-                  <div class="s-admin__box-item-action _brown">С</div>
-                  <div class="s-admin__box-item-action _red">У</div>
+                  <div v-if="item.data.visible" class="s-admin__box-item-action _brown" @click="hideArticle(item.id)">
+                    С
+                  </div>
+                  <div v-else class="s-admin__box-item-action _brown _hidden" @click="showArticle(item.id)">С</div>
+                  <div class="s-admin__box-item-action _red" @click="deleteArticle(item.id)">У</div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="s-admin__box">
-            <button class="s-admin__button" @click="getAllArticles">загрузить</button>
           </div>
         </div>
       </div>
     </div>
     <s-popup-info v-if="popupInfoShow" @close-popup="closePopupInfo" />
+    <s-popup-alert v-if="popupAlertShow" @close-popup="closePopupAlert" @delete-item="deleteArticleAbsolutly" />
   </section>
 </template>
 <script setup>
-// import getArticles from '~/api/getArticles';
-// import setNewArticle from '~/api/setNewArticle';
+import getArticles from '~/api/getArticles';
+import setNewArticle from '~/api/setNewArticle';
+import updateNewArticle from '~/api/updateNewArticle';
+import deleteNewArticle from '~/api/deleteNewArticle';
+import hideNewArticle from '~/api/hideNewArticle';
+import showNewArticle from '~/api/showNewArticle';
+
 const popupInfoShow = ref(false);
+const popupAlertShow = ref(false);
 const allArticles = ref([]);
 const currentArticle = ref([]);
 const createOrUpdate = ref(true);
@@ -56,76 +63,75 @@ const disabledButton = ref(false);
 
 const itemTitle = ref('');
 const itemContent = ref('');
+const itemID = ref('');
 
 const createArticle = async (content) => {
-  // await setNewArticle(content, itemTitle.value);
-  popupInfoShow.value = true;
+  await setNewArticle(content, itemTitle.value);
   itemTitle.value = '';
   itemContent.value = '';
-  console.log(content);
+  popupInfoShow.value = true;
 };
 const editingArticle = (id) => {
   currentArticle.value = allArticles.value.find((item) => item.id === id);
   itemTitle.value = currentArticle.value.data.title;
   itemContent.value = currentArticle.value.data.content;
+  itemID.value = id;
+  createOrUpdate.value = false;
 };
 
-const updateArticle = () => {
-  console.log('аммвы');
+const updateArticle = async (content) => {
+  await updateNewArticle(content, itemTitle.value, itemID.value);
+  popupInfoShow.value = true;
+};
+
+const hideArticle = async (id) => {
+  await hideNewArticle(id);
+  location.reload();
+};
+
+const showArticle = async (id) => {
+  await showNewArticle(id);
+  location.reload();
+};
+const deleteArticle = async (id) => {
+  itemID.value = id;
+  popupAlertShow.value = true;
+};
+
+const deleteArticleAbsolutly = async () => {
+  await deleteNewArticle(itemID.value);
+  popupAlertShow.value = false;
+  location.reload();
 };
 
 async function getAllArticles() {
-  // const response = await getArticles();
-  const response = [
-    {
-      data: {
-        createAt: {
-          seconds: 1706107660,
-          nanoseconds: 186000010,
-        },
-        title: 'Первая статья',
-        visible: true,
-        content: '<p>тадыaaaaaaaaaaaaaщь</p><p>тыщ</p>',
-        id: 9008485,
-      },
-      id: '9008485',
-    },
-    {
-      data: {
-        createAt: {
-          seconds: 1706107640,
-          nanoseconds: 186000020,
-        },
-        title: 'dvsdvsdv статья',
-        visible: true,
-        content: '<p>111111</p><p>тыщ</p>',
-        id: 9008486,
-      },
-      id: '9008486',
-    },
-    {
-      data: {
-        createAt: {
-          seconds: 1706107690,
-          nanoseconds: 186000060,
-        },
-        title: 'Nhtnmz статья',
-        visible: true,
-        content: '<p>sss</p><p>тыщ</p>',
-        id: 9008487,
-      },
-      id: '9008487',
-    },
-  ];
+  const response = await getArticles();
   allArticles.value = response.sort((a, b) => a.data.createAt - b.data.createAt);
 }
 
 const closePopupInfo = () => {
   popupInfoShow.value = false;
+  location.reload();
 };
 
+const closePopupAlert = () => {
+  popupAlertShow.value = false;
+};
+
+watch(
+  () => itemTitle.value,
+  () => {
+    if (itemTitle.value !== '') {
+      disabledButton.value = false;
+    } else {
+      disabledButton.value = true;
+    }
+  },
+  { deep: true, immediate: true },
+);
+
 onMounted(() => {
-  // getAllArticles();
+  getAllArticles();
 });
 </script>
 

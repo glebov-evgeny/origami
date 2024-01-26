@@ -1,4 +1,3 @@
-<!-- eslint-disable prettier/prettier -->
 <template>
   <section class="s-editor">
     <quill-editor v-model:content="content" content-type="html" theme="snow" toolbar="full"></quill-editor>
@@ -11,7 +10,6 @@
       Создать
     </button>
     <button v-else class="s-editor__button" @click="updateArticle">Редактировать</button>
-    <div>{{ props.itemContent }}</div>
   </section>
 </template>
 <script setup>
@@ -19,7 +17,6 @@ import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 const emit = defineEmits(['setNewArticle', 'updateArticle']);
 const content = ref('');
-// const disabledButton = ref(false);
 const props = defineProps({
   itemContent: {
     type: String,
@@ -44,18 +41,6 @@ watch(
   },
   { deep: true, immediate: true },
 );
-
-// watch(
-//   () => content.value,
-//   () => {
-//     if (content.value !== '' && content.value !== '<p><br></p>') {
-//       disabledButton.value = false;
-//     } else {
-//       disabledButton.value = true;
-//     }
-//   },
-//   { deep: true, immediate: true },
-// );
 
 const createArticle = () => {
   emit('setNewArticle', content.value);
