@@ -27,7 +27,7 @@
             <h2 class="s-admin__subtitle">Все статьи:</h2>
             <div class="s-admin__box-items">
               <div v-for="item in allArticles" :key="item.id" class="s-admin__box-item">
-                <h3 class="s-admin__box-item-title">{{ item.data.title }} / {{ item.data.visible }}</h3>
+                <h3 class="s-admin__box-item-title">{{ item.data.title }}</h3>
                 <div class="s-admin__box-item-logic">
                   <div class="s-admin__box-item-action _green" @click="editingArticle(item.id)">Р</div>
                   <div v-if="item.data.visible" class="s-admin__box-item-action _brown" @click="hideArticle(item.id)">
