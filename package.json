@@ -75,8 +75,7 @@
     }
   },
   "lint-staged": {
-    "**/*.css": "stylelint",
-    "**/*.scss": "stylelint \"**/*.scss\" scss --fix",
+    "**/*.scss": "yarn lint:style",
     "**/*": [
       "prettier --ignore-unknown --write",
       "git add ."

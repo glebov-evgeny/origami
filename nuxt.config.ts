@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   ssr: false,
   debug: true,
   vite: {
-    plugins: [eslintPlugin()],
+    plugins: [eslintPlugin({ fix: true })],
     css: {
       preprocessorOptions: {
         scss: {
@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     },
   },
   image: {
+    format: ['webp'],
     presets: {
       cover: {
         modifiers: {
@@ -63,26 +64,11 @@ export default defineNuxtConfig({
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/styles/main.scss'],
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: ['~/components', '~/components/ui'],
-
-  robots: {
-    UserAgent: '*',
-    Disallow: ['/admin/', '/authorization/', '/lk/'],
-    Host: 'https://origami-info.ru/',
-    Sitemap: 'https://origami-info.ru/sitemap.xml',
+  components: {
+    global: true,
+    // order matters: https://github.com/nuxt/nuxt/issues/15135#issuecomment-1397372680
+    dirs: ['~/components/molecules', '~/components/atoms', '~/components/sections'],
   },
-
-  sitemap: {
-    hostname: 'https://origami-info.ru/',
-    gzip: true,
-    exclude: ['/admin/', '/authorization/', '/lk/'],
-    defaults: {
-      changefreq: 'daily',
-      priority: 1,
-      lastmod: new Date(),
-    },
-  },
-
   runtimeConfig: {
     public: {
       FB_API_KEY: process.env.FB_API_KEY,

@@ -609,5 +609,7 @@ module.exports = {
       },
     ],
     'no-descending-specificity': null,
+    'selector-class-pattern': null,
+    'plugin/selector-bem-pattern': { preset: 'bem' },
   },
 };

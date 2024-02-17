@@ -8,7 +8,7 @@ body {
 body {
   overflow-x: hidden !important;
   background-color: var(--color-main);
-  font-family: Montserrat, sans-serif;
+  font-family: 'Circe', sans-serif;
   font-size: 16px;
   font-weight: 500;
   font-variant: no-common-ligatures;
@@ -22,19 +22,19 @@ a {
 
 :root {
   --layout-width: 100%;
-  --layout-padding: 5rem; // 80px
-  --layout-v-padding: 3.75rem; // 60px
+  --layout-padding: 5rem;
+  --layout-v-padding: 3.75rem;
 
   @media all and (min-width: 768px) {
-    --layout-width: 58rem; // 760px
+    --layout-width: 100%;
   }
 
-  // @media all and (min-width: 1140px) {
-  //   --layout-width: 62rem; // 992px
-  // }
+  @media all and (min-width: 1140px) {
+    --layout-width: 100%;
+  }
 
   @media all and (min-width: 1440px) {
-    --layout-width: 90rem; // 1440px
+    --layout-width: 120rem; // 1920px
   }
 }
 
